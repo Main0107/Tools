@@ -3,196 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free online image compression tool. Optimize images and reduce file size without losing quality. Ideal for web use and SEO." />
-  <meta name="keywords" content="image compression, image optimizer, reduce image size, compress jpg, compress png" />
-  <meta name="author" content="Your Name" />
-  <title>Online Image Compression Tool</title>
-
-  <!-- CSS Styles -->
+  <meta name="description" content="Free responsive image compression tool to reduce image file size online. Choose your compression level and optimize your images easily." />
+  <title>Responsive Image Compression Tool</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/8.0.0/pica.min.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
-
-    header {
-      background: #2c3e50;
-      color: white;
-      padding: 1rem;
+    .ad-container {
+      min-height: 90px;
+      margin: 1rem 0;
       text-align: center;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .upload-section, .ads-section {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    input[type="file"] {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    img {
-      max-width: 100%;
-      margin: 10px 0;
-    }
-
-    .slider {
-      width: 100%;
-    }
-
-    button {
-      background: #27ae60;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #219150;
-    }
-
-    .ads {
-      background: #eaeaea;
-      padding: 20px;
-      text-align: center;
-      margin: 20px 0;
-      border: dashed 2px #ccc;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #2c3e50;
-      color: white;
     }
   </style>
 </head>
-
-<body>
-  <header>
-    <h1>Online Image Compression Tool</h1>
-    <p>Compress your images quickly and efficiently</p>
+<body class="bg-gray-100 text-gray-800">
+  <header class="text-center p-6 bg-white shadow-md">
+    <h1 class="text-3xl font-bold">Image Compression Tool</h1>
+    <p class="mt-2 text-lg">Compress your images easily with adjustable quality levels</p>
   </header>
 
-  <div class="container">
-    <!-- AdSense Top Banner -->
-    <div class="ads-section">
-      <div class="ads">
-        <!-- Google AdSense Code (Replace ca-pub-XXXX with your own ID) -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXX"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
+  <main class="max-w-4xl mx-auto p-4">
+    <!-- Ad space top -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="1234567890"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Image Upload and Compression -->
-    <div class="upload-section">
-      <h2>Upload Image</h2>
-      <input type="file" id="imageInput" accept="image/*">
-      <label for="quality">Compression Quality: <span id="qualityValue">0.8</span></label>
-      <input type="range" id="quality" class="slider" min="0.1" max="1" step="0.1" value="0.8">
-      <canvas id="canvas" style="display:none;"></canvas>
-      <div id="preview"></div>
-      <button onclick="compressImage()">Compress & Download</button>
-    </div>
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4">Upload Image</h2>
+      <input type="file" id="imageInput" accept="image/*" class="mb-4" />
 
-    <!-- AdSense Bottom Banner -->
-    <div class="ads-section">
-      <div class="ads">
-        <!-- Google AdSense Code (Replace ca-pub-XXXX with your own ID) -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXX"
-             data-ad-slot="0987654321"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </div>
-  </div>
+      <label for="qualityRange">Compression Quality: <span id="qualityValue">80</span>%</label>
+      <input type="range" id="qualityRange" min="10" max="100" value="80" class="w-full mb-4" />
 
-  <footer>
-    &copy; 2025 ImageCompressionTool.com | All rights reserved.
+      <button id="compressBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Compress Image</button>
+
+      <div class="mt-6" id="outputContainer"></div>
+    </section>
+
+    <!-- Ad space bottom -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="0987654321"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm p-4 bg-white border-t mt-4">
+    &copy; 2025 ImageCompressor. All rights reserved.
   </footer>
 
-  <!-- JavaScript for Image Compression -->
   <script>
-    const input = document.getElementById('imageInput');
-    const canvas = document.getElementById('canvas');
-    const qualitySlider = document.getElementById('quality');
+    const imageInput = document.getElementById('imageInput');
+    const compressBtn = document.getElementById('compressBtn');
+    const outputContainer = document.getElementById('outputContainer');
+    const qualityRange = document.getElementById('qualityRange');
     const qualityValue = document.getElementById('qualityValue');
-    const preview = document.getElementById('preview');
 
-    qualitySlider.addEventListener('input', () => {
-      qualityValue.textContent = qualitySlider.value;
+    qualityRange.addEventListener('input', () => {
+      qualityValue.textContent = qualityRange.value;
     });
 
-    function compressImage() {
-      if (!input.files.length) {
-        alert("Please upload an image.");
-        return;
-      }
+    compressBtn.addEventListener('click', async () => {
+      const file = imageInput.files[0];
+      if (!file) return alert('Please select an image.');
 
-      const file = input.files[0];
+      const img = new Image();
       const reader = new FileReader();
 
-      reader.onload = function(event) {
-        const img = new Image();
-        img.src = event.target.result;
-
-        img.onload = function() {
-          const ctx = canvas.getContext('2d');
+      reader.onload = function (e) {
+        img.src = e.target.result;
+        img.onload = async function () {
+          const canvas = document.createElement('canvas');
           canvas.width = img.width;
           canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0);
 
-          const quality = parseFloat(qualitySlider.value);
-          const dataUrl = canvas.toDataURL('image/jpeg', quality);
-
-          const resultImg = new Image();
-          resultImg.src = dataUrl;
-          preview.innerHTML = '';
-          preview.appendChild(resultImg);
-
-          // Create download link
-          const link = document.createElement('a');
-          link.href = dataUrl;
-          link.download = 'compressed-image.jpg';
-          link.textContent = 'Download Compressed Image';
-          link.style.display = 'block';
-          link.style.marginTop = '10px';
-          preview.appendChild(link);
+          const quality = parseInt(qualityRange.value) / 100;
+          canvas.toBlob(blob => {
+            const url = URL.createObjectURL(blob);
+            outputContainer.innerHTML = `
+              <h3 class="text-lg font-medium mb-2">Compressed Image</h3>
+              <img src="${url}" class="max-w-full h-auto mb-2" />
+              <a href="${url}" download="compressed.jpg" class="text-blue-600 hover:underline">Download Image</a>
+            `;
+          }, 'image/jpeg', quality);
         };
       };
 
       reader.readAsDataURL(file);
-    }
+    });
   </script>
-
-  <!-- Google AdSense Library -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>
